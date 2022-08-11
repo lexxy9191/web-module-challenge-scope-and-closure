@@ -20,6 +20,7 @@ function processFirstItem(stringList, callback) {
 }
 console.log('example task:', processFirstItem(['foo','bar'],function(str){return str+str}));
 
+
 // ⭐️ Example Challenge END ⭐️
 
 
@@ -30,11 +31,13 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+  i feel like counter 1 wouldn't do much, since the function ends once return is stated, and its being told to do stuffafter the first instance of return
   2. Which of the two uses a closure? How can you tell?
-  
+  counter 2 uses  a counter, i think. there is a variable before the function.
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+     counter 1 will, theoretically, actully list something, due to console.log. counter 2 wont give a visible output.
+
 */
 
 // counter1 code
@@ -64,10 +67,10 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+   return Math.floor(Math.random() * Math.floor(3));
 }
-
+console.log(inning());
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
@@ -83,11 +86,21 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inningCB, innings){
+ let homeScore = 0;
+ let awayScore = 0;
+ for(let i = 0; i < innings; i++){
+  homeScore = homeScore + inningCB();
+  awayScore = awayScore + inningCB();
+ }  
+ return{
+  Home: homeScore,
+  Away: awayScore
+ }
 }
 
-
+console.log('task 3', finalScore(inning, 9));
+1
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
   1. Receive a callback function in a parameter - you will pass in the inning function from task 2 as your argument 
@@ -101,11 +114,13 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
-
+function getInningScore(inningCB,) {
+  return{
+    Home: inningCB(),
+    Away: inningCB()
+  }
 }
-
+console.log(getInningScore(inning));
 
 /* STRETCH: ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
